@@ -6,53 +6,117 @@
 <title>AURORE 2026 | Welcome</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<!-- QR Scanner -->
-<script type="module">
-  import QrScanner from "https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner.min.js";
-  window.QrScanner = QrScanner;
-</script>
-
 <style>
-/* ---- Your existing CSS ---- */
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:#0a0303;font-family:'Inter',sans-serif;color:#F5E6D3;display:flex;justify-content:center;align-items:center;min-height:100vh;overflow-x:hidden;perspective:1500px;}
-body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 30% 10%, #2e0a0a, #050101 80%);z-index:-3;animation: bgGradient 30s ease-in-out infinite;}
-@keyframes bgGradient {0%{background:radial-gradient(circle at 30% 10%, #2e0a0a, #050101 80%);}50%{background:radial-gradient(circle at 70% 30%, #1a0505, #000 80%);}100%{background:radial-gradient(circle at 30% 10%, #2e0a0a, #050101 80%);}}
+
+/* Animated star background */
+body::before{
+  content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background:radial-gradient(circle at 30% 10%, #2e0a0a, #050101 80%);
+  z-index:-3;
+  animation: bgGradient 30s ease-in-out infinite;
+}
+@keyframes bgGradient {
+  0%{background:radial-gradient(circle at 30% 10%, #2e0a0a, #050101 80%);}
+  50%{background:radial-gradient(circle at 70% 30%, #1a0505, #000 80%);}
+  100%{background:radial-gradient(circle at 30% 10%, #2e0a0a, #050101 80%);}
+}
 .star{position:fixed;width:2px;height:2px;background:#fff;border-radius:50%;opacity:0.7;animation:twinkle 3s infinite alternate;}
 @keyframes twinkle{0%{opacity:0.2;}50%{opacity:0.8;}100%{opacity:0.2;}}
-.name-screen{background:rgba(10,5,5,.85);padding:3rem;border-radius:2rem;text-align:center;border:1px solid rgba(212,175,55,.5);box-shadow:0 0 40px rgba(212,175,55,.3);}
-video{border-radius:1rem; margin-top:1rem;}
-.invitation-card{display:none;max-width:1200px;margin:auto;padding:2rem;position:relative;transform-style: preserve-3d;transform: rotateY(90deg) scale(0.7);opacity:0;animation:flipZoom 1s forwards;}
-@keyframes flipZoom {0% {transform: rotateY(90deg) scale(0.7); opacity:0;}100% {transform: rotateY(0deg) scale(1); opacity:1;}}
 
-/* ---- Keep all other existing CSS for logos, countdown, event details, etc. ---- */
+/* Name input screen */
+.name-screen{background:rgba(10,5,5,.85);padding:3rem;border-radius:2rem;text-align:center;border:1px solid rgba(212,175,55,.5);box-shadow:0 0 40px rgba(212,175,55,.3);}
+.name-screen input{padding:.5rem 1rem;border-radius:1rem;border:1px solid #e4b363;background:#1a0a0a;color:#fff;font-size:1rem;margin-top:1rem;transition:0.3s;}
+.name-screen input:hover{box-shadow: 0 0 15px #e4b363,0 0 30px #ffe5b4; transform:scale(1.05);}
+.name-screen button{margin-top:1rem;padding:.5rem 1.5rem;border-radius:1.5rem;border:none;background:linear-gradient(135deg,#FFE5B4,#E4B363);color:#1e0a0a;font-weight:600;font-size:1rem;cursor:pointer;transition:0.3s;}
+.name-screen button:hover{transform:scale(1.05);}
+
+/* Invitation card */
+.invitation-card{
+  display:none;
+  max-width:1200px;
+  margin:auto;
+  padding:2rem;
+  position:relative;
+  transform-style: preserve-3d;
+  transform: rotateY(90deg) scale(0.7);
+  opacity:0;
+  animation:flipZoom 1s forwards;
+}
+@keyframes flipZoom {
+  0% {transform: rotateY(90deg) scale(0.7); opacity:0;}
+  100% {transform: rotateY(0deg) scale(1); opacity:1;}
+}
+
+/* Logo & header animations */
 .top-logo{text-align:center;margin-bottom:1.5rem;transform-style:preserve-3d;}
-.top-logo img{max-width:260px;width:100%;filter:drop-shadow(0 0 15px #e4b363) drop-shadow(0 0 5px #fff);animation:rotate3D 8s linear infinite, floatLogo 4s ease-in-out infinite, pulseLogo 2s ease-in-out infinite;transform-style: preserve-3d;}
+.top-logo img{
+  max-width:260px;width:100%;
+  filter:drop-shadow(0 0 15px #e4b363) drop-shadow(0 0 5px #fff);
+  animation:rotate3D 8s linear infinite, floatLogo 4s ease-in-out infinite, pulseLogo 2s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
 @keyframes floatLogo{0%{transform:translateY(0);}50%{transform:translateY(-15px);}100%{transform:translateY(0);}}
-@keyframes rotate3D{0%{transform:rotateX(0deg) rotateY(0deg);}25%{transform:rotateX(15deg) rotateY(90deg);}50%{transform:rotateX(0deg) rotateY(180deg);}75%{transform:rotateX(-15deg) rotateY(270deg);}100%{transform:rotateX(0deg) rotateY(360deg);}}
-@keyframes pulseLogo{0%,100%{transform: scale(1); filter: drop-shadow(0 0 15px #e4b363);}50%{transform: scale(1.1); filter: drop-shadow(0 0 25px #ffe5b4);}}
+@keyframes rotate3D{
+  0%{transform:rotateX(0deg) rotateY(0deg);}
+  25%{transform:rotateX(15deg) rotateY(90deg);}
+  50%{transform:rotateX(0deg) rotateY(180deg);}
+  75%{transform:rotateX(-15deg) rotateY(270deg);}
+  100%{transform:rotateX(0deg) rotateY(360deg);}
+}
+@keyframes pulseLogo{
+  0%,100%{transform: scale(1); filter: drop-shadow(0 0 15px #e4b363);}
+  50%{transform: scale(1.1); filter: drop-shadow(0 0 25px #ffe5b4);}
+}
+
 .logo-header{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid rgba(212,175,55,.5);padding-bottom:1rem;margin-bottom:1.5rem;flex-wrap:wrap;}
 .logo-area{display:flex;align-items:center;gap:.8rem;}
-.logo-icon{width:56px;height:56px;border-radius:50%;background:linear-gradient(145deg,#c9a03d,#8b691b);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(212,175,55,.8);animation:rotateCrown 8s linear infinite, pulseCrown 2.5s ease-in-out infinite;}
+.logo-icon{
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(145deg,#c9a03d,#8b691b);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 20px rgba(212,175,55,.8);
+  animation:rotateCrown 8s linear infinite, pulseCrown 2.5s ease-in-out infinite;
+}
 .logo-icon i{font-size:2.2rem;color:#1e0a0a;}
 @keyframes rotateCrown{0%{transform:rotateY(0deg);}100%{transform:rotateY(360deg);}}
 @keyframes pulseCrown{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
+
 .logo-text h2{font-family:'Space Grotesk',monospace;font-size:1.8rem;background:linear-gradient(135deg,#FFE5B4,#E4B363);-webkit-background-clip:text;color:transparent;text-shadow:0 0 12px #e4b363;}
 .logo-text span{font-size:.7rem;letter-spacing:2px;color:#e4b56e;text-shadow:0 0 5px rgba(212,175,55,.4);}
 .invite-badge{padding:.5rem 1.2rem;border-radius:40px;border:1px solid #e4b363;background:rgba(212,175,55,.18);font-size:.9rem;font-weight:600;text-shadow:0 0 5px #e4b363;}
+
+/* Invitation title animations */
 .invitation-title{text-align:center;margin-top:1rem;}
-.typing-title{display:inline-block;overflow:hidden;white-space:nowrap;border-right:.15em solid #e4b363;animation:typing 3s steps(25) 1, blink 0.7s step-end infinite;}
+.typing-title{
+  display:inline-block;
+  overflow:hidden;
+  white-space:nowrap;
+  border-right:.15em solid #e4b363;
+  animation:typing 3s steps(25) 1, blink 0.7s step-end infinite;
+}
 @keyframes typing{from{width:0;}to{width:100%;}}
 @keyframes blink{50%{border-color:transparent;}}
 .ornament{width:120px;height:3px;margin:.6rem auto;background:linear-gradient(90deg,transparent,#e4b363,#c9922c,#e4b363,transparent);}
-.tagline{color:#f2cf91;letter-spacing:1px;font-size:1.05rem;text-shadow:0 0 7px rgba(212,175,55,.5);animation: neonGlow 1.8s ease-in-out infinite alternate;}
-@keyframes neonGlow{from{ text-shadow:0 0 5px #e4b363,0 0 10px #ffe5b4,0 0 20px #e4b363; }to{ text-shadow:0 0 20px #e4b363,0 0 30px #ffe5b4,0 0 40px #e4b363; }}
+.tagline{
+  color:#f2cf91;letter-spacing:1px;font-size:1.05rem;text-shadow:0 0 7px rgba(212,175,55,.5);
+  animation: neonGlow 1.8s ease-in-out infinite alternate;
+}
+@keyframes neonGlow{
+  from{ text-shadow:0 0 5px #e4b363,0 0 10px #ffe5b4,0 0 20px #e4b363; }
+  to{ text-shadow:0 0 20px #e4b363,0 0 30px #ffe5b4,0 0 40px #e4b363; }
+}
+
+/* Event details & hover animations */
 .event-details{margin:2rem 0;display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;background:rgba(0,0,0,.55);padding:1.4rem;border-radius:2rem;border:1px solid rgba(212,175,55,.5);box-shadow:0 0 20px rgba(212,175,55,.3);}
 .info{display:flex;gap:.8rem;align-items:center;padding:.8rem 1.6rem;border-radius:3rem;background:rgba(30,10,10,.6);border:1px solid rgba(212,175,55,.4);transition:0.3s;cursor:pointer;}
 .info:hover{background:rgba(212,175,55,.15);transform:scale(1.08) translateY(-3px);box-shadow:0 0 25px rgba(212,175,55,.6);}
 .info i{font-size:1.8rem;color:#e4b363;filter:drop-shadow(0 0 8px #e4b363);}
 .info strong{font-size:.75rem;color:#ffdd99;letter-spacing:1.5px;}
 .info span{display:block;font-size:1.05rem;font-weight:700;}
+
+/* Countdown animations */
 .countdown-section{text-align:center;margin:2rem 0;}
 .countdown-section h3{font-size:1.2rem;letter-spacing:3px;margin-bottom:1rem;color:#ffdfaa;text-shadow:0 0 5px #e4b363;}
 .countdown{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
@@ -60,21 +124,24 @@ video{border-radius:1rem; margin-top:1rem;}
 @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
 .num{font-size:2.4rem;font-family:'Space Grotesk',monospace;background:linear-gradient(145deg,#f9e2b7,#d6a449);-webkit-background-clip:text;color:transparent;text-shadow:0 0 8px #e4b363; animation:bounce 1.2s ease-in-out infinite alternate;}
 .label{font-size:.7rem;letter-spacing:2px;margin-top:.4rem;color:#e4b891;text-shadow:0 0 3px #e4b363;}
+
+/* Welcome note animation */
 .welcome-note{margin:2rem 0;padding:1.6rem;border-left:6px solid #e4b363;border-radius:2rem;background:linear-gradient(135deg,rgba(180,90,40,.2),rgba(212,175,55,.1));box-shadow:0 0 25px rgba(212,175,55,.4);opacity:0;transform:translateY(20px);animation:slideIn 1s forwards 1.2s;}
 @keyframes slideIn{0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
+
+/* Footer */
 footer{margin-top:3rem;text-align:center;font-size:.75rem;color:#bc9a6b;border-top:1px solid rgba(212,175,55,.4);padding-top:1.4rem;text-shadow:0 0 5px #e4b363;}
 </style>
 </head>
 <body>
 
-<!-- Name / QR scan screen -->
 <div class="name-screen" id="nameScreen">
   <h2>Welcome to AURORE 2026!</h2>
-  <p>Scan your QR code to receive your personalized invitation:</p>
-  <video id="qrVideo" style="width:300px;height:300px;"></video>
+  <p>Please enter your name to receive your personalized invitation:</p>
+  <input type="text" id="guestName" placeholder="Your Name"><br>
+  <button id="enterBtn">Enter</button>
 </div>
 
-<!-- Invitation card -->
 <div class="container invitation-card" id="invitationCard">
   <div class="top-logo">
     <img src="aurore-logo.jpeg" alt="AURORE 2026 Logo">
@@ -114,7 +181,7 @@ footer{margin-top:3rem;text-align:center;font-size:.75rem;color:#bc9a6b;border-t
   </div>
 
   <div class="welcome-note">
-    <p><strong><span id="personalName">Dear Guest,</span></strong><br><br>
+    <p><strong><span id="personalName">Dear Mr/Miss,</span></strong><br><br>
       We are honored to invite you to <strong>AURORE 2026 – Junior Welcome Event</strong>, organized by the seniors of the Faculty of Computer Science & Engineering
       <strong>(10A / 11 / 11A Batches)</strong>. Your esteemed presence would greatly enrich this special occasion.</p>
   </div>
@@ -123,28 +190,21 @@ footer{margin-top:3rem;text-align:center;font-size:.75rem;color:#bc9a6b;border-t
 </div>
 
 <script>
-const invitationCard = document.getElementById('invitationCard');
-const personalName = document.getElementById('personalName');
 const nameScreen = document.getElementById('nameScreen');
-const qrVideo = document.getElementById('qrVideo');
+const invitationCard = document.getElementById('invitationCard');
+const guestInput = document.getElementById('guestName');
+const personalName = document.getElementById('personalName');
+const enterBtn = document.getElementById('enterBtn');
 
-// Example email → name map
-const guestMap = {
-  "guest1@example.com": "Alice",
-  "guest2@example.com": "Bob",
-  "guest3@example.com": "Bhagya"
-};
-
-// Start QR scanner immediately
-const scanner = new QrScanner(qrVideo, result => {
-  scanner.stop();
-  const email = result.trim();
-  const name = guestMap[email] || "Guest";
-  personalName.innerText = `Dear ${name},`;
-  nameScreen.style.display = 'none';
-  invitationCard.style.display = 'block';
+enterBtn.addEventListener('click', () => {
+  const name = guestInput.value.trim();
+  if(!name){ alert("Please enter your name!"); return; }
+  personalName.style.opacity = 0;
+  personalName.innerText = `Dear Mr/Miss ${name},`;
+  setTimeout(()=>{ personalName.style.opacity = 1; personalName.style.transform = "translateY(0)"; }, 100);
+  nameScreen.style.display='none';
+  invitationCard.style.display='block';
 });
-scanner.start();
 
 // Countdown Timer
 const target = new Date(2026,3,9,9,0,0);
@@ -170,7 +230,7 @@ for(let i=0;i<80;i++){
   document.body.appendChild(star);
 }
 
-// 3D tilt effect
+// 3D tilt effect for invitation card
 document.addEventListener('mousemove', e => {
   if(invitationCard.style.display !== 'block') return;
   const cx = window.innerWidth / 2;
