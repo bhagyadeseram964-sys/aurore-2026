@@ -108,8 +108,9 @@ body::before{
   margin-bottom:2rem;
 }
 .logo-icon{
-  width:70px;height:70px;
-  margin:0 auto 0.4rem;
+  width:70px;
+  height:70px;
+  margin:0 auto 0.4rem; /* ✅ GAP REDUCED */
   border-radius:50%;
   background:linear-gradient(145deg,#c9a03d,#8b691b);
   display:flex;
@@ -121,9 +122,13 @@ body::before{
 @keyframes pulse{
   50%{transform:scale(1.15);}
 }
-.logo-icon i{font-size:2.5rem;color:#1e0a0a;}
+.logo-icon i{
+  font-size:2.5rem;
+  color:#1e0a0a;
+}
 
 .logo-text h2{
+  margin-top:0; /* ✅ DEFAULT GAP REMOVED */
   font-family:'Space Grotesk';
   font-size:2.3rem;
   background:linear-gradient(135deg,#FFE5B4,#E4B363);
@@ -164,7 +169,7 @@ body::before{
   text-shadow:0 0 10px #e4b363;
 }
 
-/* Event details (labels restored) */
+/* Event details */
 .event-details{
   margin:2.5rem auto;
   display:flex;
@@ -301,7 +306,7 @@ footer{
       <strong>AURORE 2026 – Juniors Welcoming Event</strong>,<br><br>
       organized by the seniors of the<br>
       <strong>Faculty of Computer Science and Engineering</strong><br>
-      <strong>(10A / 11 / 11A / SE / CNCS / MIS & 2 / 2A DS Batches )</strong>.<br><br>
+      <strong>(10A / 11 / 11A / SE / CNCS / MIS & 2 / 2A DS Batches)</strong>.<br><br>
       Your esteemed presence would greatly enrich this special occasion,<br>
       and we would be deeply honored to have you with us.
     </p>
@@ -319,7 +324,7 @@ footer{
 
   <footer>
     AURORE 2026 · Junior Welcome Event<br>
-    Organized by 10A / 11 / 11A / SE / CNCS / MIS & 2 / 2A DS Batches  · FOCSE<br>
+    Organized by 10A / 11 / 11A / SE / CNCS / MIS & 2 / 2A DS Batches<br>
     KIU Auditorium
   </footer>
 
@@ -339,7 +344,6 @@ const target=new Date(2026,3,9,9,0,0);
 setInterval(()=>{
   let d=target-new Date();
   if(d<0)d=0;
-  d=Math.floor(d);
   document.getElementById("d").innerText=Math.floor(d/86400000);
   document.getElementById("h").innerText=Math.floor(d/3600000)%24;
   document.getElementById("m").innerText=Math.floor(d/60000)%60;
